@@ -17,7 +17,7 @@ spec:
       - args:
         - --address=greeter:50051
         - --insecure=true
-        image: marcoamador/grpc-greeter-go-client:5
+        image: marcoamador/grpc-greeter-go-client:1
         imagePullPolicy: Always
         name: greeter-client
         ports:
