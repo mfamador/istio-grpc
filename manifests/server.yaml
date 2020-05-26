@@ -1,0 +1,45 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeter
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: greeter
+  template:
+    metadata:
+      labels:
+        app: greeter
+    spec:
+      containers:
+      - args:
+        - --address=127.0.0.1:50051
+        image: marcoamador/grpc-greeter-go-server:1
+        imagePullPolicy: Always
+        name: greeter
+        ports:
+        - containerPort: 50051
+        readinessProbe:
+          exec:
+            command:
+            - /bin/grpc_health_probe
+            - -addr=:50051
+          initialDelaySeconds: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: greeter
+  labels:
+     app: greeter
+spec:
+  ports:
+  - name: grpc
+    port: 50051
+    protocol: TCP
+  selector:
+    app: greeter
+  type: ClusterIP
+---
