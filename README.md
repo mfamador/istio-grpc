@@ -52,3 +52,5 @@ kubectl logs -f deploy/greeting
 ```
 kubectl logs -f deploy/greeting-client
 ```
+
+
