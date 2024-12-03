@@ -1,4 +1,4 @@
-# GitOps workflow demo to install Istion and gRPC services
+# GitOps workflow demo to install Istio and gRPC services
 
 ## Install k3d without Taefik
 
